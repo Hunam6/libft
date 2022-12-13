@@ -6,7 +6,7 @@
 /*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:13:03 by etattevi          #+#    #+#             */
-/*   Updated: 2022/11/03 15:46:20 by etattevi         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:36:41 by etattevi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,39 @@ typedef struct s_split {
 	int		out_i;
 }	t_split;
 
-static t_split	*init(char const *str)
+static size_t	count_parts(char const *str, char c)
+{
+	size_t	count;
+	size_t	i;
+	size_t	j;
+
+	count = 0;
+	i = 0;
+	if (!str[0])
+		return (0);
+	if (str[0] != c)
+		count++;
+	while (str[i])
+	{
+		j = i;
+		while (str[i] == c)
+			i++;
+		if (i != j && str[i])
+			count++;
+		if (str[i])
+			i++;
+	}
+	return (count);
+}
+
+static t_split	*init(char const *str, char c)
 {
 	t_split	*s;
 
 	s = malloc(sizeof(t_split));
 	if (!s)
 		return (NULL);
-	s->out = malloc(sizeof(char *) * (ft_strlen(str) / 2 + 1));
+	s->out = ft_calloc(sizeof(char *), count_parts(str, c) + 1);
 	if (!(s->out))
 		return (NULL);
 	s->i = 0;
@@ -39,10 +64,14 @@ static t_split	*init(char const *str)
 
 static char	**end(char const *s, t_split *data)
 {
+	char	**out;
+
 	if (data->part_beg != -1)
 		data->out[data->out_i++] = ft_substr(s, data->part_beg, data->part_len);
 	data->out[data->out_i] = NULL;
-	return (data->out);
+	out = data->out;
+	free(data);
+	return (out);
 }
 
 char	**ft_split(char const *s, char c)
@@ -51,7 +80,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	data = init(s);
+	data = init(s, c);
 	if (!data)
 		return (NULL);
 	while (s[data->i])

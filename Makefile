@@ -32,7 +32,10 @@ SRCS := ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_printf.c \
+		ft_printf_utils.c \
+		get_next_line.c \
+		get_next_line_utils.c
 
 BONUS_SRCS := ft_lstadd_back_bonus.c \
 			  ft_lstadd_front_bonus.c \
@@ -58,8 +61,10 @@ fclean: clean
 
 re: fclean $(NAME)
 
-bonus:
+$(BONUS_SRCS:.c=.o):
 	gcc -Wall -Werror -Wextra -c $(BONUS_SRCS)
 	ar -urs $(NAME) $(BONUS_SRCS:.c=.o)
+
+bonus: $(BONUS_SRCS:.c=.o)
 
 .PHONY: all clean fclean re bonus

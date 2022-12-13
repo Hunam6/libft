@@ -6,7 +6,7 @@
 /*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:17:52 by etattevi          #+#    #+#             */
-/*   Updated: 2022/11/02 14:30:17 by etattevi         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:01:42 by etattevi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <limits.h>
+
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -70,8 +73,8 @@ void	ft_putnbr_fd(int n, int fd);
 
 // list
 t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *newnode);
+void	ft_lstadd_back(t_list **lst, t_list *newnode);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
