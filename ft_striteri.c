@@ -6,13 +6,13 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:13:03 by etattevi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:34:18 by hunam            ###   ########.fr       */
+/*   Updated: 2023/03/23 16:21:36 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(t_uint i, char* s))
+void	ft_striteri(char *s, void (*f)(t_uint i, char *s))
 {
 	size_t	i;
 
