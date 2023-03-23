@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:39:53 by etattevi          #+#    #+#             */
-/*   Updated: 2022/12/07 12:59:13 by etattevi         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:34:18 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	write_arg(int *printed, va_list args, char specifier)
 	else if (specifier == 'i' || specifier == 'd')
 		putnb(printed, va_arg(args, int));
 	else if (specifier == 'u')
-		putnb(printed, va_arg(args, unsigned int));
+		putnb(printed, va_arg(args, t_uint));
 	else if (specifier == 'x' || specifier == 'X')
-		puthex(printed, va_arg(args, unsigned int), specifier == 'X', false);
+		puthex(printed, va_arg(args, t_uint), specifier == 'X', false);
 	(*printed)--;
 }
 

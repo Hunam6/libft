@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:39:53 by etattevi          #+#    #+#             */
-/*   Updated: 2022/11/25 15:02:57 by etattevi         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:34:18 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	puthex(int *printed, unsigned long n, bool upper, bool is_long)
 	if (is_long)
 		puthexnbr(printed, (unsigned long)n, upper);
 	else
-		puthexnbr(printed, (unsigned int)n, upper);
+		puthexnbr(printed, (t_uint)n, upper);
 }
 
 void	puthexnbr(int *printed, unsigned long n, bool upper)
@@ -31,7 +31,7 @@ void	puthexnbr(int *printed, unsigned long n, bool upper)
 		return ;
 	if (n >= 16)
 		puthexnbr(printed, n / 16, upper);
-	if (0 <= n % 16 && n % 16 <= 9)
+	if (n % 16 <= 9)
 		ft_putchar_fd('0' + n % 16, 1);
 	else if (upper)
 		ft_putchar_fd('A' - 10 + n % 16, 1);

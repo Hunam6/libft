@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:17:52 by etattevi          #+#    #+#             */
-/*   Updated: 2022/12/07 13:01:42 by etattevi         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:33:56 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdint.h>
 
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+typedef unsigned int	t_uint;
 
 typedef struct s_list
 {

@@ -35,36 +35,29 @@ SRCS := ft_atoi.c \
 		ft_printf.c \
 		ft_printf_utils.c \
 		get_next_line.c \
-		get_next_line_utils.c
+		ft_lstadd_back.c \
+		ft_lstadd_front.c \
+		ft_lstclear.c \
+		ft_lstdelone.c \
+		ft_lstiter.c \
+		ft_lstlast.c \
+		ft_lstmap.c \
+		ft_lstnew.c \
+		ft_lstsize.c
 
-BONUS_SRCS := ft_lstadd_back_bonus.c \
-			  ft_lstadd_front_bonus.c \
-			  ft_lstclear_bonus.c \
-			  ft_lstdelone_bonus.c \
-			  ft_lstiter_bonus.c \
-			  ft_lstlast_bonus.c \
-			  ft_lstmap_bonus.c \
-			  ft_lstnew_bonus.c \
-			  ft_lstsize_bonus.c
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): 
-	cc -Wall -Werror -Wextra -c $(SRCS)
-	ar -crs $(NAME) $(SRCS:.c=.o)
+$(NAME):
+	@echo "Compiling libft..."
+	@cc -Wall -Werror -Wextra -c $(SRCS)
+	@ar -crs $(NAME) $(SRCS:.c=.o)
 
 clean:
-	rm -rf $(SRCS:.c=.o) $(BONUS_SRCS:.c=.o)
+	@rm -rf $(SRCS:.c=.o) $(BONUS_SRCS:.c=.o)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean $(NAME)
-
-$(BONUS_SRCS:.c=.o):
-	gcc -Wall -Werror -Wextra -c $(BONUS_SRCS)
-	ar -urs $(NAME) $(BONUS_SRCS:.c=.o)
-
-bonus: $(BONUS_SRCS:.c=.o)
-
-.PHONY: all clean fclean re bonus

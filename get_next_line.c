@@ -6,37 +6,93 @@
 /*   By: etattevi <etattevi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:32:31 by etattevi          #+#    #+#             */
-/*   Updated: 2022/12/07 13:01:27 by etattevi         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:21:17 by etattevi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
+int	chr_idx(const char *s, int c)
+{
+	int	i;
+
+	if (!s)
+		return (-1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	if ((char)c == '\0')
+		return (i);
+	return (-1);
+}
+
+char	*has_nl(char *saved[OPEN_MAX], int fd)
+{
+	int			nl_idx;
+	char		*line;
+	char		*rem;
+
+	nl_idx = chr_idx(saved[fd], '\n');
+	if (nl_idx != -1)
+	{
+		line = ft_substr(saved[fd], 0, nl_idx + 1);
+		rem = ft_substr(saved[fd], nl_idx + 1, ft_strlen(saved[fd]) - nl_idx);
+		free(saved[fd]);
+		saved[fd] = rem;
+		return (line);
+	}
+	return (NULL);
+}
+
+char	*no_nl(char	*saved[OPEN_MAX], int fd)
+{
+	char	*out;
+
+	out = NULL;
+	if (saved[fd])
+	{
+		if (saved[fd][0] != '\0')
+			out = ft_strdup(saved[fd]);
+		free(saved[fd]);
+		saved[fd] = NULL;
+	}
+	return (out);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*out;
+
+	if (!s1)
+		return (ft_strdup(s2));
+	out = ft_strjoin(s1, s2);
+	free(s1);
+	return (out);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*fds[OPEN_MAX];
-	int			nb_of_read;
+	static char	*saved[OPEN_MAX] = {NULL};
+	char		buff[BUFFER_SIZE + 1];
+	char		*line;
 	int			just_read;
-	int			tmp_i;
-	char		*tmp;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, NULL, 0) < 0)
 		return (NULL);
-	nb_of_read = 0;
 	while (42)
 	{
-		tmp = malloc(chr_i(fds[fd], '\0') + ++nb_of_read * BUFFER_SIZE + 1);
-		if (!tmp)
-			return (NULL);
-		ft_memmove(tmp, fds[fd], chr_i(fds[fd], '\0') + 1);
-		if (fds[fd] != tmp)
-			free(fds[fd]);
-		fds[fd] = tmp;
-		tmp_i = chr_i(fds[fd], '\0');
-		just_read = read(fd, fds[fd] + tmp_i, BUFFER_SIZE);
-		tmp_i += just_read;
-		tmp = eof(fds[fd], tmp, &just_read, tmp_i);
-		if (just_read)
-			return (tmp);
+		line = has_nl(saved, fd);
+		if (line)
+			return (line);
+		just_read = read(fd, buff, BUFFER_SIZE);
+		if (just_read == 0 && chr_idx(saved[fd], '\n') == -1)
+			return (no_nl(saved, fd));
+		buff[just_read] = '\0';
+		saved[fd] = ft_strjoin_free(saved[fd], buff);
 	}
 }

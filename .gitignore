@@ -1,7 +1,10 @@
+#VSCode
 .vscode
-a.out
-main.c
-tests/
+
+#MacOS
 *.dSYM/
+.DS_Store
+
+#C
 *.o
 *.a
