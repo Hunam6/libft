@@ -6,7 +6,7 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:18:49 by hunam             #+#    #+#             */
-/*   Updated: 2023/04/04 15:55:10 by hunam            ###   ########.fr       */
+/*   Updated: 2023/04/04 17:12:37 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_arr	*arr_init(
 		return (NULL);
 	out->data = malloc(cap * el_size);
 	if (!out->data)
+	{
+		free(out);
 		return (NULL);
+	}
 	out->free_el = free_el;
 	out->print_el = print_el;
 	out->cap = cap;
