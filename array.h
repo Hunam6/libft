@@ -6,7 +6,7 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:19:47 by hunam             #+#    #+#             */
-/*   Updated: 2023/04/04 17:01:36 by hunam            ###   ########.fr       */
+/*   Updated: 2023/04/04 17:59:06 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_arr
 	t_print_el	print_el;
 }	t_arr;
 
-t_arr	*arr_init(
-			int cap, int el_size, void free_el(void *), void print_el(void *));
+t_arr	*arr_init(int cap, int el_size, t_free_el free_el, t_print_el print_el);
 void	arr_free(t_arr *arr);
 void	arr_append(t_arr *arr, void *el);
 void	arr_prepend(t_arr *arr, void *el);
