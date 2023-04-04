@@ -8,3 +8,5 @@
 #C
 *.o
 *.a
+a.out
+main.c

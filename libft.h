@@ -6,7 +6,7 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:17:52 by etattevi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:33:56 by hunam            ###   ########.fr       */
+/*   Updated: 2023/04/03 15:56:38 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include "ft_printf.h"
 # include "get_next_line.h"
+# include "array.h"
 
 typedef unsigned int	t_uint;
 

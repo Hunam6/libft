@@ -43,7 +43,9 @@ SRCS := ft_atoi.c \
 		ft_lstlast.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
-		ft_lstsize.c
+		ft_lstsize.c \
+		array1.c \
+		array2.c
 
 .PHONY: all clean fclean re
 
