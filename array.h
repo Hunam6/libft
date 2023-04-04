@@ -6,14 +6,12 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:19:47 by hunam             #+#    #+#             */
-/*   Updated: 2023/04/04 14:28:17 by hunam            ###   ########.fr       */
+/*   Updated: 2023/04/04 17:01:36 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_H
 # define ARRAY_H
-
-# include "libft.h"
 
 typedef void	(*t_free_el)(void *);
 typedef void	(*t_print_el)(void *);
