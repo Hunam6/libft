@@ -6,29 +6,29 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:39:53 by etattevi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:34:18 by hunam            ###   ########.fr       */
+/*   Updated: 2023/04/05 17:00:57 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	write_arg(int *printed, va_list args, char specifier)
+void	write_arg(int *printed, va_list *args, char specifier)
 {
 	if (specifier == 'c')
-		putchr(printed, va_arg(args, int));
+		putchr(printed, va_arg(*args, int));
 	else if (specifier == 's')
-		putstr(printed, va_arg(args, char *));
+		putstr(printed, va_arg(*args, char *));
 	else if (specifier == 'p')
 	{
 		putstr(printed, "0x");
-		puthex(printed, va_arg(args, unsigned long), false, true);
+		puthex(printed, va_arg(*args, unsigned long), false, true);
 	}
 	else if (specifier == 'i' || specifier == 'd')
-		putnb(printed, va_arg(args, int));
+		putnb(printed, va_arg(*args, int));
 	else if (specifier == 'u')
-		putnb(printed, va_arg(args, t_uint));
+		putnb(printed, va_arg(*args, t_uint));
 	else if (specifier == 'x' || specifier == 'X')
-		puthex(printed, va_arg(args, t_uint), specifier == 'X', false);
+		puthex(printed, va_arg(*args, t_uint), specifier == 'X', false);
 	(*printed)--;
 }
 
@@ -48,7 +48,7 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			if (prev_was_percent && *str != '%')
-				write_arg(&printed, args, *str);
+				write_arg(&printed, &args, *str);
 			else
 				ft_putchar_fd(*str, 1);
 			printed++;
