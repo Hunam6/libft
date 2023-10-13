@@ -6,16 +6,16 @@
 /*   By: hunam <hunam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:38:51 by etattevi          #+#    #+#             */
-/*   Updated: 2023/04/05 17:01:22 by hunam            ###   ########.fr       */
+/*   Updated: 2023/10/13 20:52:06 by hunam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdarg.h>
-
 # include "libft.h"
+# include <stdarg.h>
+# include <stdbool.h>
 
 int		ft_printf(const char *str, ...);
 void	write_arg(int *printed, va_list *args, char specifier);
